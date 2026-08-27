@@ -1,90 +1,64 @@
 
 import java.util.Scanner;
 
-public class ContaInterface {
+public class ContaInterface{
+
+    public int controleOpcoes;
+    private int flag = 1;
+
+    Conta acessaServicos;
+
+    Scanner leitor = new Scanner(System.in);
 
 
-    public static void menu(int numConta, String nomeTitular){
+    public ContaInterface(){
 
-        int opcao,controlador;
-        double valoresDeOperacao;
+        acessaServicos = new Conta();
+    }
 
-        Conta estruturaOperacao = new Conta();
+    public Conta criaConta(){
+        
+        acessaServicos.setConta();
 
-        boolean flag = true;
-        Scanner leitor = new Scanner(System.in);
+        return acessaServicos;
+    }
 
+    public void AcessaConta(){
 
-        while(flag){
+        while(flag == 1){
 
-            System.out.println("QUAL DAS OPCOES ABAIXO DESEJA ACESSAR:(DIGITE O NUMERO DA OPCAO DESEJADA) ");
-            System.out.println("1-DEPOSITO");
-            System.out.println("2-SACAR");
-            System.out.println("3-CONFERIR SALDO");
-            System.out.println("4-ENCERRAR SERVICOS");
+            System.out.printf("\n\nACESSO A CONTA. DIGITE UMA DAS OPCOES ABAIXO:\n");
+            System.out.printf("1-DEPOSITAR \n2-SACAR \n3- CONFERIR SALDO \n4-SAIR MENU\n");
 
-            opcao = leitor.nextInt();
+            controleOpcoes = leitor.nextInt();
 
-            switch(opcao){
-
+            switch(controleOpcoes){
 
                 case 1: 
-
-                    System.out.println("INFORME O VALOR DO DEPOSITO");
-                    valoresDeOperacao = leitor.nextDouble();
-
-                    estruturaOperacao.setDepositar(valoresDeOperacao);
-
+                    System.out.printf("\n" + acessaServicos.setDeposito());
                     break;
-
+                
                 case 2:
-
-                    System.out.println("INFORME O VALOR DO SAQUE");
-                    
-                    valoresDeOperacao = leitor.nextDouble();
-
-                    estruturaOperacao.setSacar(valoresDeOperacao);
-
+                    acessaServicos.setSacar();
                     break;
-                    
-
+                
                 case 3:
-                    
-                    System.out.println("SALDO ATUAL: ");
-
-                    System.out.println(estruturaOperacao.ConfereSaldo());
-
-
-
+                    System.out.println("SEU SALDO EH: " + acessaServicos.getConfereSaldo());
                     break;
-
+                
                 case 4:
 
-                    System.out.println("SERVIÇO ENCERRADO COM SUCESSO SR(A)." + nomeTitular);
-                    flag = false;
+                    System.out.println("Saindo do Menu");
+                    flag = 0;
                     break;
+
 
             }
 
-                if(flag){
-
-                    System.out.println("DESEJA ENCERRAR O SERVIÇO OU ESCOLHER OUTRA OPCAO?");
-                    System.out.println("0-ENCERRAR");
-                    System.out.println("1-CONTINUAR");
-                    
-                    controlador = leitor.nextInt();
-
-                    if(controlador == 0){
-
-                        System.out.println("SERVIÇO ENCERRADO COM SUCESSO SR(A)." + nomeTitular);
-                        flag = false;
-                    }
-
-                }
-
         }
 
-        leitor.close();
+        
+
+
     }
-    
 }
