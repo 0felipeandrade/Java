@@ -1,12 +1,13 @@
-
-
 public class Main{
 
     public static void main(String[] args) {
-    
-    BancoInterface startPrograma = new BancoInterface();
+        
 
-    startPrograma.Menu();
+        //ContaInterface mainAcessaInterface;
+        
+        BancoInterface mainAcessaInterface;
+        mainAcessaInterface = new BancoInterface();
 
+        mainAcessaInterface.menuBancoPrincipal();
     }
 }
