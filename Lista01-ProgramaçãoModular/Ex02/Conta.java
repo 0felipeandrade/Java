@@ -1,82 +1,66 @@
-
-import java.util.Scanner;
-
 public class Conta{
 
-    Scanner leitor = new Scanner(System.in);
-
-
-    private String nomeDoTitular;
-    private int numConta;
+    private int numeroConta;
+    private String nomeUsuario;
     private double saldo;
-
-    public double controleDeOperacao;
-
+    
 
     public Conta(){
 
-        this.nomeDoTitular = "NOMEUSUARIO";
-        this.numConta = 0;
-        this.saldo = 0.0;
+        nomeUsuario = "Algum usuario ainda nao definido";
+        numeroConta = 0;
+        saldo = 0.0;
+    }
+
+    public Conta(int numConta,String nomeUsuario){
+
+        this.numeroConta = numConta;
+        this.nomeUsuario = nomeUsuario;
 
     }
 
-    public void setConta(){
+    private void Depositar(Double valor){
 
-        System.out.print("Digite seu nome completo: ");
-        this.nomeDoTitular = leitor.nextLine();
-
-        System.out.printf("\nDigite o numero da sua conta: ");
-        this.numConta = leitor.nextInt();
-
+        saldo = saldo + valor;
     }
 
-    private void Deposito(){
 
-        System.out.print("Digite a quantidade que deseja depositar:");
-        controleDeOperacao = leitor.nextDouble();
+    private void Sacar(Double valor){
 
-        saldo = saldo + controleDeOperacao;
+        if((saldo - valor) < 0){
 
-    }
-
-    private void Sacar(){
-
-        System.out.print("Digite a quantidade que deseja sacar:");
-        
-        controleDeOperacao = leitor.nextDouble();
-        
-
-        if((saldo - controleDeOperacao) < 0){
-
-            System.out.println("ERRO: SALDO INSULFICIENTE");
+            System.out.println("Saldo insulficiente...Deposite mais dinheiro ou então saque um valor menor");
 
         }else{
 
-            saldo = saldo - controleDeOperacao;
-            
-            System.out.println("SAQUE REALIZADO COM SUCESSO");
+            saldo = saldo - valor;
         }
 
     }
 
-    public Double getConfereSaldo(){
+    public double getConfereSaldo(){
 
-        return saldo;
+        return this.saldo;
     }
 
-    public String setDeposito(){
+    public int getNumeroConta(){
 
-        this.Deposito();
-        
-        return "Deposito Feito com sucesso";
+        return this.numeroConta;
     }
 
-    public void setSacar(){
+    public String getnomeConta(){
 
-        this.Sacar();
+        return this.nomeUsuario;
     }
 
+    public void setDeposito(Double valor){
 
-    
+        this.Depositar(valor);
+
+    }
+
+    public void setSacar(Double valor){
+
+        this.Sacar(valor);
+    }
 }
