@@ -3,62 +3,57 @@ import java.util.Scanner;
 
 public class ContaInterface{
 
-    public int controleOpcoes;
-    private int flag = 1;
+    Conta acesso;
 
-    Conta acessaServicos;
+    public void AcessaContaInterface(Conta conta){
 
-    Scanner leitor = new Scanner(System.in);
+        acesso = conta;
 
-
-    public ContaInterface(){
-
-        acessaServicos = new Conta();
     }
 
-    public Conta criaConta(){
-        
-        acessaServicos.setConta();
+    public void menu(){
 
-        return acessaServicos;
-    }
+        Scanner leitor = new Scanner(System.in);
+        int flag;
+        boolean whileRodaMenu = true;
+        double valoresDeOperacao;
 
-    public void AcessaConta(){
+        while(whileRodaMenu){
+            
+            System.out.println("----------------------\n----------------------\nVoce entrou no menu de opcoes do BancoPOOMaster, digite uma opcao abaixo:");
+            System.out.printf("1-Depositar\n2-Sacar\n3-Conferir Saldo\n4-Sair do Menu\n");
 
-        while(flag == 1){
+            flag = leitor.nextInt();
 
-            System.out.printf("\n\nACESSO A CONTA. DIGITE UMA DAS OPCOES ABAIXO:\n");
-            System.out.printf("1-DEPOSITAR \n2-SACAR \n3- CONFERIR SALDO \n4-SAIR MENU\n");
+            switch (flag) {
+                case 1:
 
-            controleOpcoes = leitor.nextInt();
+                    valoresDeOperacao = leitor.nextDouble();
+                    acesso.setDeposito(valoresDeOperacao);
 
-            switch(controleOpcoes){
-
-                case 1: 
-                    System.out.printf("\n" + acessaServicos.setDeposito());
                     break;
-                
                 case 2:
-                    acessaServicos.setSacar();
+
+                    valoresDeOperacao = leitor.nextDouble();
+                    acesso.setSacar(valoresDeOperacao);
+
                     break;
                 
                 case 3:
-                    System.out.println("SEU SALDO EH: " + acessaServicos.getConfereSaldo());
+
+                    System.out.println("Seu saldo eh: R$ " + acesso.getConfereSaldo()); 
                     break;
-                
+
                 case 4:
 
                     System.out.println("Saindo do Menu");
-                    flag = 0;
+                    whileRodaMenu = false;
                     break;
-
 
             }
 
         }
 
-        
-
-
+        leitor.close();
     }
 }
