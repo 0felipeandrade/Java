@@ -1,24 +1,30 @@
 public class Banco{
 
-    Conta[] contas;
-    public int qtdContas;
+    Conta[] contasDoBancoPOOMaster;
+    private int quantidadeContasAbertas;
+
 
     public Banco(){
 
-        contas = new Conta[10];
-        qtdContas = 0;
+        contasDoBancoPOOMaster = new Conta[10];
+        quantidadeContasAbertas = 0;
 
     }
 
-    public Conta[] AcessaContaUsuario(){
+    public Conta[] acessoUsuario(){
 
-        return contas;
+        return contasDoBancoPOOMaster;
 
     }
 
-    public void CadastroDeConta(Conta contaNova){
+    public void cadastrarContas(Conta contaNova){
 
-        contas[qtdContas++] = contaNova;
+        contasDoBancoPOOMaster[quantidadeContasAbertas++] = contaNova;
 
+    }
+
+    public int getRetornaInteiroQuantidadeContas(){
+
+        return this.quantidadeContasAbertas;
     }
 }
