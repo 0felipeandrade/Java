@@ -9,6 +9,7 @@ public class ContaPoupanca extends ContaBancaria{
     }
 
 
+    @Override
     public double getSaldo(){
 
         return (super.getSaldo() * taxaDeRendimento);
@@ -18,5 +19,13 @@ public class ContaPoupanca extends ContaBancaria{
     public String toString(){
 
         return "\nNome: " + cliente + "\nNumero Conta: " + numConta + "\nSaldo: " + getSaldo();
+    }
+
+     public double setDepositar(double valor){
+        
+
+        return depositar(valor);
+        
+
     }
 }
