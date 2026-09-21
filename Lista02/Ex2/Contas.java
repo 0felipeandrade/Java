@@ -1,7 +1,6 @@
 
-import java.util.Scanner;
-
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Contas {
     
@@ -43,8 +42,8 @@ public class Contas {
 
         while(temp < qtd){
 
-            System.out.printf("Para o nosso cliente %d, digite o Nome Completo, o cpf do mesmo e se deseja abrir uma Conta Especial ou Poupanca:",temp);
-            System.out.print("Nome Completo: ");
+            System.out.printf("\nPara o nosso cliente %d, digite o Nome Completo, o cpf do mesmo e se deseja abrir uma Conta Especial ou Poupanca:",temp);
+            System.out.print("\nNome Completo: ");
             nome = leitor.nextLine();
 
             System.out.print("CPF(apenas os numeros): ");
@@ -75,8 +74,9 @@ public class Contas {
 
 
         """);
-
-        while(true){
+        
+        boolean controle = true;
+        while(controle){
   
 
                 System.out.println("Digite o numero da conta para acessá-la");
@@ -89,23 +89,56 @@ public class Contas {
                 if(imprimeCliente == null){
 
                     System.out.println("Numero da Conta invalido");
+                    break;
+
                 }else{
 
-                    System.out.println(imprimeCliente.toString());
+                    System.out.println("Conta encontrada com sucesso");
                 }
 
             
-                System.out.println("\n------------------------\nGostaria de acessar qual das opcoes abaixo? \n1-SACAR\n2-DEPOSITAR\n3-VISUALIZAR INFO's");
+                System.out.println("\n------------------------\nGostaria de acessar qual das opcoes abaixo? \n1-SACAR\n2-DEPOSITAR\n3-VISUALIZAR INFO's\n4-SAIR");
 
-                System.out.print("Deseja continuar?\nS/N: ");
-                nome = leitor.nextLine();
+                int flag = leitor.nextInt();
+                leitor.nextLine();
+                double valor;
+
+                switch (flag) {
+
+                    case 1:
+
+                        valor = leitor.nextDouble();
+                        boolean ehVerdade = imprimeCliente.sacar(valor);
+                        break;
+
+                        
+
+                    
+                    case 2:
+
+                        valor = leitor.nextDouble();
+                        leitor.nextLine();
+                        imprimeCliente.depositar(valor);
+                        System.out.println("OBRIGADO POR DEPOSITAR " + valor);
+                        break;
+                    
+                    case 3:
+                        
+                        System.out.println(imprimeCliente.toString()+"\n");
+                        break;
+
+                    case 4:
+
+                        controle = false;
+                        break;
 
 
-                if(nome.equals("N") || nome.equals("n")){
-
-                    System.out.println("Obrigado por utilizar nosso Aplicativo!!");
-                    break;
                 }
+
+
+
+
+                
 
 
         }
